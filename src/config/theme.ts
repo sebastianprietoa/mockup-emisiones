@@ -1,7 +1,7 @@
 export const projectTheme = {
   clientName: "Green Ticket",
-  projectName: "Carbon Intelligence Dashboard",
-  subtitle: "Mockup ejecutivo GEI y biodiversidad",
+  projectName: "Panel de Inteligencia de Carbono",
+  subtitle: "Mockup ejecutivo de GEI y biodiversidad",
 };
 
 export const statusTone = {

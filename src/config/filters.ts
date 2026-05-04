@@ -44,7 +44,7 @@ export const installationOptions: FilterOption[] = [
   { label: "Hotel La Cochera", value: "Hotel La Cochera" },
   { label: "Hostal Ckausatur", value: "Hostal Ckausatur" },
   { label: "Hostal Rukazen", value: "Hostal Rukazen" },
-  { label: "Cabañas Rio Yaye", value: "Cabañas Rio Yaye" },
+  { label: "Cabañas Río Yaye", value: "Cabañas Río Yaye" },
   { label: "Barros Nativo", value: "Barros Nativo" },
   { label: "Adobe", value: "Adobe" },
   { label: "Café Peregrino", value: "Café Peregrino" },

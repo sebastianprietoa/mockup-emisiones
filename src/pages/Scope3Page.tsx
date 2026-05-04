@@ -24,7 +24,7 @@ export function Scope3Page() {
         description="Emisiones indirectas asociadas a residuos sólidos y a la operación turística, leídas por unidad de negocio e instalación para hacer visible el origen del inventario."
       />
 
-      <FilterBar fields={scopeFilters} values={filters} onChange={setFilterValue} />
+      <FilterBar fields={scopeFilters} values={filters} onChange={setFilterValue} title="Filtros de Alcance 3" />
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
         <KpiCard
@@ -55,11 +55,11 @@ export function Scope3Page() {
       </section>
 
       <section className="grid gap-6 xl:grid-cols-2">
-        <ChartCard title="Emisiones por unidad de negocio" description="Agrupación principal para leer el origen del alcance 3.">
+        <ChartCard title="Participación por unidad de negocio" description="Agrupación principal para leer el origen del alcance 3.">
           <DonutChart data={view.scope3ShareData} dataKey="value" nameKey="name" />
         </ChartCard>
 
-        <ChartCard title="Top instalaciones" description="Sitios con mayor contribución anual dentro del alcance 3.">
+        <ChartCard title="Top 10 instalaciones" description="Sitios con mayor contribución anual dentro del alcance 3.">
           <BarChart
             data={view.scope3TopInstallationData}
             xKey="installation"
@@ -68,7 +68,7 @@ export function Scope3Page() {
           />
         </ChartCard>
 
-        <ChartCard title="Evolución mensual" description="Distribución temporal del inventario anual.">
+        <ChartCard title="Tendencia mensual del alcance" description="Distribución temporal del inventario anual.">
           <LineChart data={view.scope3MonthlyData} xKey="month" series={[{ key: "emissions", name: "tCO2e" }]} />
         </ChartCard>
 
@@ -99,7 +99,7 @@ export function Scope3Page() {
       </section>
 
       <section className="rounded-3xl border border-white/10 bg-slate-900/70 p-5 shadow-soft backdrop-blur">
-        <h3 className="text-base font-semibold text-white">Tabla de detalle por instalación</h3>
+        <h3 className="text-base font-semibold text-white">Detalle por instalación</h3>
         <p className="mt-1 text-sm text-slate-400">
           Consolidado anual para revisar la contribución de cada instalación dentro del alcance 3.
         </p>
@@ -120,3 +120,4 @@ export function Scope3Page() {
     </div>
   );
 }
+
