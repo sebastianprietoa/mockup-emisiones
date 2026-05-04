@@ -1,0 +1,22 @@
+year;campaign;zone;kpi;value;unit;trend;status;sourceType
+2024;2024;predio-principal;Especies amenazadas presentes;8;registros;alza;medio;Campañas de terreno
+2024;2024;area-influencia;Abundancia de especies clave;124;individuos/ha;baja;bueno;Línea base
+2024;2024;corredor-ecologico;Riqueza de especies;67;especies;alza;bueno;Monitoreo ambiental
+2024;2024;predio-principal;Cobertura vegetal;78;%;estable;bueno;Información territorial
+2024;2024;area-influencia;Estado del ecosistema;72;/100;estable;medio;Monitoreo ambiental
+2024;2024;corredor-ecologico;Presencia de especies invasoras;5;registros;alza;crítico;Campañas de terreno
+2024;2024;predio-principal;Mortalidad de fauna asociada;2;casos;baja;medio;Línea base
+2023;2023;predio-principal;Especies amenazadas presentes;7;registros;alza;medio;Campañas de terreno
+2023;2023;area-influencia;Abundancia de especies clave;118;individuos/ha;baja;bueno;Línea base
+2023;2023;corredor-ecologico;Riqueza de especies;61;especies;alza;bueno;Monitoreo ambiental
+2023;2023;predio-principal;Cobertura vegetal;75;%;estable;bueno;Información territorial
+2023;2023;area-influencia;Estado del ecosistema;69;/100;estable;medio;Monitoreo ambiental
+2023;2023;corredor-ecologico;Presencia de especies invasoras;4;registros;alza;crítico;Campañas de terreno
+2023;2023;predio-principal;Mortalidad de fauna asociada;3;casos;baja;medio;Línea base
+2022;2022;predio-principal;Especies amenazadas presentes;6;registros;estable;medio;Campañas de terreno
+2022;2022;area-influencia;Abundancia de especies clave;112;individuos/ha;baja;bueno;Línea base
+2022;2022;corredor-ecologico;Riqueza de especies;58;especies;estable;bueno;Monitoreo ambiental
+2022;2022;predio-principal;Cobertura vegetal;72;%;estable;bueno;Información territorial
+2022;2022;area-influencia;Estado del ecosistema;66;/100;estable;medio;Monitoreo ambiental
+2022;2022;corredor-ecologico;Presencia de especies invasoras;3;registros;estable;medio;Campañas de terreno
+2022;2022;predio-principal;Mortalidad de fauna asociada;4;casos;baja;medio;Línea base

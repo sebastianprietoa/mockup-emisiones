@@ -7,17 +7,15 @@ import { BiodiversityMap } from "../components/maps/BiodiversityMap";
 import { BiodiversityKpiCard } from "../components/kpi/BiodiversityKpiCard";
 import { BiodiversityTable } from "../components/tables/BiodiversityTable";
 import { biodiversityFilters } from "../config/filters";
-import {
-  biodiversityKpis,
-  biodiversityTableRows,
-  ecosystemStatusData,
-  invasiveRecordsData,
-  richnessEvolutionData,
-  vegetationCoverageData,
-} from "../data/biodiversityData";
+import { buildBiodiversityView } from "../data/dashboardDatabase";
+import { ecosystemStatusData, vegetationCoverageData } from "../data/biodiversityData";
+import { useDashboardFilters } from "../context/DashboardFiltersContext";
 import { formatCompact } from "../utils/formatters";
 
 export function BiodiversityPage() {
+  const { filters, setFilterValue } = useDashboardFilters();
+  const view = buildBiodiversityView(filters);
+
   return (
     <div className="space-y-6">
       <PageTitle
@@ -26,10 +24,10 @@ export function BiodiversityPage() {
         description="Módulo complementario independiente de GEI para visualizar KPIs de especies, cobertura vegetal y monitoreo territorial."
       />
 
-      <FilterBar fields={biodiversityFilters} title="Filtros TNFD" />
+      <FilterBar fields={biodiversityFilters} values={filters} onChange={setFilterValue} title="Filtros TNFD" />
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {biodiversityKpis.map((item) => (
+        {view.kpis.map((item) => (
           <BiodiversityKpiCard
             key={item.name}
             name={item.name}
@@ -45,17 +43,16 @@ export function BiodiversityPage() {
       <section className="grid gap-6 xl:grid-cols-2">
         <ChartCard title="Evolución de riqueza de especies" description="Serie temporal de diversidad registrada.">
           <LineChart
-            data={richnessEvolutionData}
+            data={view.rows
+              .filter((row) => row.kpi === "Riqueza de especies")
+              .sort((left, right) => Number(left.campaign) - Number(right.campaign))
+              .map((row) => ({ month: row.campaign, species: row.value }))}
             xKey="month"
             series={[{ key: "species", name: "Especies" }]}
           />
         </ChartCard>
         <ChartCard title="Cobertura vegetal por tipo" description="Superficie simulada por comunidad vegetal.">
-          <BarChart
-            data={vegetationCoverageData}
-            xKey="type"
-            series={[{ key: "hectares", name: "Hectáreas" }]}
-          />
+          <BarChart data={vegetationCoverageData} xKey="type" series={[{ key: "hectares", name: "Hectáreas" }]} />
         </ChartCard>
         <ChartCard title="Estado de ecosistemas por zona" description="Distribución de condiciones ecológicas.">
           <BarChart
@@ -70,7 +67,10 @@ export function BiodiversityPage() {
         </ChartCard>
         <ChartCard title="Registros de especies invasoras" description="Seguimiento de presión biológica sobre el territorio.">
           <LineChart
-            data={invasiveRecordsData}
+            data={view.rows
+              .filter((row) => row.kpi === "Presencia de especies invasoras")
+              .sort((left, right) => Number(left.campaign) - Number(right.campaign))
+              .map((row) => ({ month: row.campaign, records: row.value }))}
             xKey="month"
             series={[{ key: "records", name: "Registros" }]}
           />
@@ -85,10 +85,9 @@ export function BiodiversityPage() {
           Consolidado base para trazabilidad ambiental y seguimiento de riesgos de naturaleza.
         </p>
         <div className="mt-4">
-          <BiodiversityTable rows={biodiversityTableRows} />
+          <BiodiversityTable rows={view.tableRows} />
         </div>
       </section>
     </div>
   );
 }
-
