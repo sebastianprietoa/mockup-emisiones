@@ -1,0 +1,31 @@
+year;month;installation;country;businessUnit;scope;category;source;activity;unit;value;factor;emissions_tco2e;fuelOrMethod;method;renewableShare
+2024;Ene;Planta San Pedro;Chile;Produccion;1;Combustion fija;Caldera principal;Consumo gas natural;kWh;5200;0.202;526;Gas natural;direct;
+2024;Mar;Centro Logistico Norte;Chile;Logistica;1;Combustion movil;Flota logistica;Consumo diesel;litros;9800;2.680;260;Diesel;direct;
+2024;May;Planta San Pedro;Chile;Produccion;1;Fugas de refrigerantes;Chillers;Recarga refrigerante;kg;22;8.180;180;R-134a;direct;
+2024;Feb;Planta San Pedro;Chile;Produccion;2;Electricidad comprada;Energia red;Consumo electrico;kWh;142000;0.259;420;Electricidad;location-based;42
+2024;Feb;Oficina Central;Chile;Corporativo;2;Electricidad comprada;Contrato I-REC;Consumo electrico;kWh;142000;0.181;300;Electricidad;market-based;58
+2024;Abr;Centro Logistico Norte;Peru;Logistica;3;Bienes y servicios adquiridos;Proveedores criticos;Compras;toneladas;74;4.100;680;Compras;direct;
+2024;Jun;Centro Logistico Norte;Peru;Logistica;3;Transporte y distribucion aguas arriba;Transporte tercerizado;Flete;km;18000;0.088;610;Transporte;direct;
+2024;Ago;Oficina Central;Chile;Corporativo;3;Viajes de negocios;Viajes aereos;Vuelo;km;5200;0.145;420;Aereo;direct;
+2024;Oct;Oficina Central;Argentina;Corporativo;3;Traslado de colaboradores;Movilidad diaria;Commute;km;68000;0.006;350;Commuting;direct;
+2024;Dic;Planta San Pedro;Chile;Produccion;3;Residuos generados en operaciones;Residuos valorizados;Tratamiento de residuos;toneladas;42;0.023;320;Residuos;direct;
+2023;Ene;Planta San Pedro;Chile;Produccion;1;Combustion fija;Caldera principal;Consumo gas natural;kWh;4980;0.202;500;Gas natural;direct;
+2023;Mar;Centro Logistico Norte;Chile;Logistica;1;Combustion movil;Flota logistica;Consumo diesel;litros;9400;2.680;250;Diesel;direct;
+2023;May;Planta San Pedro;Chile;Produccion;1;Fugas de refrigerantes;Chillers;Recarga refrigerante;kg;20;8.180;170;R-134a;direct;
+2023;Feb;Planta San Pedro;Chile;Produccion;2;Electricidad comprada;Energia red;Consumo electrico;kWh;136000;0.259;390;Electricidad;location-based;38
+2023;Feb;Oficina Central;Chile;Corporativo;2;Electricidad comprada;Contrato I-REC;Consumo electrico;kWh;136000;0.181;280;Electricidad;market-based;55
+2023;Abr;Centro Logistico Norte;Peru;Logistica;3;Bienes y servicios adquiridos;Proveedores criticos;Compras;toneladas;71;4.100;650;Compras;direct;
+2023;Jun;Centro Logistico Norte;Peru;Logistica;3;Transporte y distribucion aguas arriba;Transporte tercerizado;Flete;km;17200;0.088;590;Transporte;direct;
+2023;Ago;Oficina Central;Chile;Corporativo;3;Viajes de negocios;Viajes aereos;Vuelo;km;4980;0.145;400;Aereo;direct;
+2023;Oct;Oficina Central;Argentina;Corporativo;3;Traslado de colaboradores;Movilidad diaria;Commute;km;65500;0.006;330;Commuting;direct;
+2023;Dic;Planta San Pedro;Chile;Produccion;3;Residuos generados en operaciones;Residuos valorizados;Tratamiento de residuos;toneladas;40;0.023;300;Residuos;direct;
+2022;Ene;Planta San Pedro;Chile;Produccion;1;Combustion fija;Caldera principal;Consumo gas natural;kWh;4760;0.202;480;Gas natural;direct;
+2022;Mar;Centro Logistico Norte;Chile;Logistica;1;Combustion movil;Flota logistica;Consumo diesel;litros;9000;2.680;240;Diesel;direct;
+2022;May;Planta San Pedro;Chile;Produccion;1;Fugas de refrigerantes;Chillers;Recarga refrigerante;kg;18;8.180;160;R-134a;direct;
+2022;Feb;Planta San Pedro;Chile;Produccion;2;Electricidad comprada;Energia red;Consumo electrico;kWh;128000;0.259;360;Electricidad;location-based;35
+2022;Feb;Oficina Central;Chile;Corporativo;2;Electricidad comprada;Contrato I-REC;Consumo electrico;kWh;128000;0.181;270;Electricidad;market-based;52
+2022;Abr;Centro Logistico Norte;Peru;Logistica;3;Bienes y servicios adquiridos;Proveedores criticos;Compras;toneladas;69;4.100;620;Compras;direct;
+2022;Jun;Centro Logistico Norte;Peru;Logistica;3;Transporte y distribucion aguas arriba;Transporte tercerizado;Flete;km;16400;0.088;560;Transporte;direct;
+2022;Ago;Oficina Central;Chile;Corporativo;3;Viajes de negocios;Viajes aereos;Vuelo;km;4760;0.145;390;Aereo;direct;
+2022;Oct;Oficina Central;Argentina;Corporativo;3;Traslado de colaboradores;Movilidad diaria;Commute;km;62000;0.006;320;Commuting;direct;
+2022;Dic;Planta San Pedro;Chile;Produccion;3;Residuos generados en operaciones;Residuos valorizados;Tratamiento de residuos;toneladas;38;0.023;290;Residuos;direct;
