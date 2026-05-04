@@ -1,5 +1,5 @@
 export const projectTheme = {
-  clientName: "Nodo San Pedro",
+  clientName: "Green Ticket",
   projectName: "Carbon Intelligence Dashboard",
   subtitle: "Mockup ejecutivo GEI y biodiversidad",
 };
@@ -7,26 +7,26 @@ export const projectTheme = {
 export const statusTone = {
   bueno: {
     label: "Bueno",
-    classes: "bg-emerald-500/15 text-emerald-200 ring-1 ring-emerald-400/30",
+    classes: "bg-[#39B54A]/15 text-[#B9F4C0] ring-1 ring-[#39B54A]/30",
   },
   medio: {
     label: "Medio",
-    classes: "bg-amber-500/15 text-amber-200 ring-1 ring-amber-400/30",
+    classes: "bg-[#F7931E]/15 text-[#FFD39D] ring-1 ring-[#F7931E]/30",
   },
   crítico: {
     label: "Crítico",
-    classes: "bg-rose-500/15 text-rose-200 ring-1 ring-rose-400/30",
+    classes: "bg-[#ED1C24]/15 text-[#FFC0C3] ring-1 ring-[#ED1C24]/30",
   },
 } as const;
 
 export const trendTone = {
   alza: {
     label: "Alza",
-    classes: "bg-rose-500/15 text-rose-200 ring-1 ring-rose-400/30",
+    classes: "bg-[#ED1C24]/15 text-[#FFC0C3] ring-1 ring-[#ED1C24]/30",
   },
   baja: {
     label: "Baja",
-    classes: "bg-emerald-500/15 text-emerald-200 ring-1 ring-emerald-400/30",
+    classes: "bg-[#39B54A]/15 text-[#B9F4C0] ring-1 ring-[#39B54A]/30",
   },
   estable: {
     label: "Estable",
@@ -35,13 +35,12 @@ export const trendTone = {
 } as const;
 
 export const chartPalette = [
-  "#34d399",
-  "#14b8a6",
-  "#38bdf8",
-  "#60a5fa",
-  "#818cf8",
-  "#a78bfa",
-  "#fbbf24",
-  "#fb7185",
+  "#39B54A",
+  "#00A99D",
+  "#29ABE2",
+  "#F7931E",
+  "#ED1C24",
+  "#662D91",
+  "#C69C6D",
+  "#998675",
 ];
-

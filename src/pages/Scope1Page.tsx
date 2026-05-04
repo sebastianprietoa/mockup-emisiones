@@ -5,11 +5,15 @@ import { FilterBar } from "../components/common/FilterBar";
 import { PageTitle } from "../components/common/PageTitle";
 import { KpiCard } from "../components/kpi/KpiCard";
 import { EmissionsTable } from "../components/tables/EmissionsTable";
+import { useDashboardFilters } from "../context/DashboardFiltersContext";
 import { scopeFilters } from "../config/filters";
-import { scope1FuelData, scope1Kpis, scope1MonthlyData, scope1SiteData, scope1TableRows } from "../data/scope1Data";
+import { buildEmissionsView } from "../data/dashboardDatabase";
 import { formatSignedPercent, formatTons } from "../utils/formatters";
 
 export function Scope1Page() {
+  const { filters, setFilterValue } = useDashboardFilters();
+  const view = buildEmissionsView(filters);
+
   return (
     <div className="space-y-6">
       <PageTitle
@@ -18,37 +22,45 @@ export function Scope1Page() {
         description="Fuentes bajo control operativo directo, con foco en combustión fija, combustión móvil y fugas de refrigerantes."
       />
 
-      <FilterBar fields={scopeFilters} />
+      <FilterBar
+        fields={scopeFilters}
+        values={filters}
+        onChange={setFilterValue}
+      />
 
       <section className="grid gap-4 md:grid-cols-4">
-        <KpiCard label="tCO2e Alcance 1" value={formatTons(scope1Kpis.totalEmissions)} helper="Emisiones directas consolidadas." />
-        <KpiCard label="Combustible más relevante" value={scope1Kpis.mainFuel} helper="Fuente predominante en el alcance." />
-        <KpiCard label="Instalación más emisora" value={scope1Kpis.topInstallation} helper="Mayor contribución operacional." />
+        <KpiCard
+          label="tCO2e Alcance 1"
+          value={formatTons(view.scope1Kpis.totalEmissions)}
+          helper="Emisiones directas consolidadas."
+        />
+        <KpiCard
+          label="Combustible más relevante"
+          value={view.scope1Kpis.mainFuel}
+          helper="Fuente predominante en el alcance."
+        />
+        <KpiCard
+          label="Instalación más emisora"
+          value={view.scope1Kpis.topInstallation}
+          helper="Mayor contribución operacional."
+        />
         <KpiCard
           label="Variación mensual"
-          value={formatSignedPercent(scope1Kpis.monthlyVariation)}
-          helper="Cambio respecto del mes anterior."
-          trend="baja"
+          value={formatSignedPercent(view.scope1Kpis.monthlyVariation)}
+          helper="Cambio respecto del periodo previo."
+          trend={view.scope1Kpis.monthlyVariation < 0 ? "baja" : "alza"}
         />
       </section>
 
       <section className="grid gap-6 xl:grid-cols-2">
         <ChartCard title="Emisiones por tipo de combustible" description="Lectura de combustión fija y móvil.">
-          <BarChart
-            data={scope1FuelData}
-            xKey="fuel"
-            series={[{ key: "emissions", name: "tCO2e" }]}
-          />
+          <BarChart data={view.scope1FuelData} xKey="fuel" series={[{ key: "emissions", name: "tCO2e" }]} />
         </ChartCard>
         <ChartCard title="Emisiones por instalación" description="Contribución relativa por sitio operacional.">
-          <BarChart
-            data={scope1SiteData}
-            xKey="site"
-            series={[{ key: "emissions", name: "tCO2e" }]}
-          />
+          <BarChart data={view.scope1SiteData} xKey="site" series={[{ key: "emissions", name: "tCO2e" }]} />
         </ChartCard>
         <ChartCard title="Evolución mensual" description="Comportamiento mensual del alcance.">
-          <LineChart data={scope1MonthlyData} xKey="month" series={[{ key: "emissions", name: "tCO2e" }]} />
+          <LineChart data={view.scope1MonthlyData} xKey="month" series={[{ key: "emissions", name: "tCO2e" }]} />
         </ChartCard>
 
         <section className="rounded-3xl border border-white/10 bg-slate-900/70 p-5 shadow-soft backdrop-blur">
@@ -58,7 +70,7 @@ export function Scope1Page() {
           </p>
           <div className="mt-4">
             <EmissionsTable
-              rows={scope1TableRows}
+              rows={view.scope1TableRows}
               columns={[
                 { key: "source", label: "Fuente" },
                 { key: "category", label: "Categoría" },
@@ -74,4 +86,3 @@ export function Scope1Page() {
     </div>
   );
 }
-
