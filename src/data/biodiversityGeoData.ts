@@ -1,4 +1,4 @@
-import type { BiodiversityStatus } from "./biodiversityData";
+export type BiodiversityGeoStatus = "bueno" | "medio" | "crítico";
 
 export type BiodiversityGeoPoint = {
   id: string;
@@ -9,22 +9,16 @@ export type BiodiversityGeoPoint = {
   latitude: number;
   longitude: number;
   priority: "Alta" | "Media" | "Baja";
-  status: BiodiversityStatus;
+  status: BiodiversityGeoStatus;
   description: string;
-  kpis: Array<{
-    label: string;
-    value: string;
-  }>;
+  kpis: Array<{ label: string; value: string }>;
   layers: string[];
-  position: {
-    x: number;
-    y: number;
-  };
+  markerColor: string;
 };
 
 export const biodiversityGeoPoints: BiodiversityGeoPoint[] = [
   {
-    id: "bosque-tambillo",
+    id: "bosque-del-tambillo",
     name: "Bosque del Tambillo",
     type: "Punto de interés",
     ecosystemType: "Bosque de tamarugos",
@@ -41,44 +35,33 @@ export const biodiversityGeoPoints: BiodiversityGeoPoint[] = [
       { label: "Estado ecosistémico", value: "Medio" },
       { label: "Presencia de invasoras", value: "5 registros" },
     ],
-    layers: [
-      "Puntos de avistamiento",
-      "Transectos de monitoreo",
-      "Zonas sensibles",
-      "Área de influencia",
-    ],
-    position: {
-      x: 48,
-      y: 44,
-    },
+    layers: ["Puntos de avistamiento", "Transectos de monitoreo", "Zonas sensibles", "Área de influencia"],
+    markerColor: "#34d399",
   },
   {
-    id: "san-pedro-centro",
+    id: "san-pedro-atacama",
     name: "San Pedro de Atacama",
     type: "Referencia territorial",
-    ecosystemType: "Centro urbano turístico",
+    ecosystemType: "Centro urbano y valle oasis",
     locationLabel: "Cabecera comunal",
-    latitude: -22.91,
-    longitude: -68.20,
+    latitude: -22.915,
+    longitude: -68.203,
     priority: "Media",
     status: "bueno",
-    description: "Punto de referencia para accesos, flujos de visitantes y trazabilidad territorial.",
+    description: "Referencia territorial para lectura de contexto, accesos y presión de uso de suelo.",
     kpis: [
-      { label: "Flujo de visitantes", value: "Alto" },
-      { label: "Cobertura", value: "Urbana" },
+      { label: "Cobertura vegetal", value: "61%" },
+      { label: "Riqueza de especies", value: "45 especies" },
     ],
-    layers: ["Acceso vial", "Servicios", "Núcleo urbano"],
-    position: {
-      x: 30,
-      y: 26,
-    },
+    layers: ["Área de influencia", "Puntos de avistamiento"],
+    markerColor: "#38bdf8",
   },
   {
-    id: "transecto-aves",
+    id: "transecto-de-aves",
     name: "Transecto de aves",
     type: "Punto de monitoreo",
     ecosystemType: "Corredor de avifauna",
-    locationLabel: "Sector de observación norte",
+    locationLabel: "Sector norte de observación",
     latitude: -23.08,
     longitude: -68.12,
     priority: "Alta",
@@ -88,54 +71,44 @@ export const biodiversityGeoPoints: BiodiversityGeoPoint[] = [
       { label: "Avistamientos", value: "24 registros" },
       { label: "Riqueza", value: "18 especies" },
     ],
-    layers: ["Transectos de aves", "Monitoreo estacional"],
-    position: {
-      x: 68,
-      y: 58,
-    },
+    layers: ["Transectos de monitoreo", "Monitoreo estacional"],
+    markerColor: "#f59e0b",
   },
   {
     id: "zona-control",
     name: "Zona control",
-    type: "Control comparativo",
-    ecosystemType: "Área de referencia",
-    locationLabel: "Periferia de monitoreo",
-    latitude: -23.01,
-    longitude: -68.25,
-    priority: "Baja",
-    status: "bueno",
-    description: "Área usada para comparar tendencias de cobertura y presión ecológica respecto del sitio principal.",
-    kpis: [
-      { label: "Cobertura vegetal", value: "64%" },
-      { label: "Presión", value: "Baja" },
-    ],
-    layers: ["Línea base", "Puntos de control"],
-    position: {
-      x: 18,
-      y: 62,
-    },
-  },
-  {
-    id: "ruta-acceso",
-    name: "Ruta de acceso",
-    type: "Infraestructura",
-    ecosystemType: "Corredor antrópico",
-    locationLabel: "Camino de acceso al sector",
-    latitude: -23.03,
-    longitude: -68.21,
+    type: "Punto de contraste",
+    ecosystemType: "Salar / zona árida",
+    locationLabel: "Área referencial exterior",
+    latitude: -23.066,
+    longitude: -68.14,
     priority: "Media",
     status: "medio",
-    description: "Corredor de tránsito que permite vincular visitas, operación y control de acceso al punto principal.",
+    description: "Área de contraste para comparar cobertura, presión y registros de especies entre zonas.",
     kpis: [
-      { label: "Tránsito", value: "Moderado" },
-      { label: "Intervención", value: "Lineal" },
+      { label: "Cobertura vegetal", value: "33%" },
+      { label: "Especies invasoras", value: "2 registros" },
     ],
-    layers: ["Ruta de acceso", "Fiscalización", "Señalización"],
-    position: {
-      x: 40,
-      y: 72,
-    },
+    layers: ["Zonas sensibles", "Área de influencia"],
+    markerColor: "#14b8a6",
+  },
+  {
+    id: "ruta-de-acceso",
+    name: "Ruta de acceso",
+    type: "Infraestructura",
+    ecosystemType: "Corredor vial",
+    locationLabel: "Acceso vehicular al predio",
+    latitude: -23.09,
+    longitude: -68.19,
+    priority: "Media",
+    status: "medio",
+    description: "Trayecto de ingreso para seguimiento de accesos, tránsito operativo y puntos de control.",
+    kpis: [
+      { label: "Tránsito", value: "Bajo" },
+      { label: "Capas activas", value: "2" },
+    ],
+    layers: ["Área de influencia", "Puntos de avistamiento"],
+    markerColor: "#fb923c",
   },
 ];
 
-export const biodiversityGeoDefaultPointId = "bosque-tambillo";
