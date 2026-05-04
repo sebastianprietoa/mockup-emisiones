@@ -51,6 +51,22 @@ function MapController({ point }: { point: BiodiversityGeoPoint }) {
   return null;
 }
 
+function BoundsController() {
+  const map = useMap();
+
+  useEffect(() => {
+    const points = biodiversityGeoPoints.map((point) => [point.latitude, point.longitude] as [number, number]);
+
+    map.fitBounds(points, {
+      padding: [48, 48],
+      maxZoom: 6,
+      animate: true,
+    });
+  }, [map]);
+
+  return null;
+}
+
 export function BiodiversityMap() {
   const [selectedId, setSelectedId] = useState(defaultSelectedPointId);
 
@@ -107,7 +123,7 @@ export function BiodiversityMap() {
               TNFD Territorial
             </span>
             <span className="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-100">
-              5 puntos activos
+              {biodiversityGeoPoints.length} puntos activos
             </span>
           </div>
 
@@ -123,7 +139,7 @@ export function BiodiversityMap() {
 
             <MapContainer
               center={selectedPosition}
-              zoom={12}
+              zoom={5}
               scrollWheelZoom={false}
               zoomControl
               className="h-[540px] w-full"
@@ -133,7 +149,7 @@ export function BiodiversityMap() {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
 
-              <MapController point={selectedPoint} />
+              <BoundsController />
 
               <Polyline
                 positions={corridorPath}
