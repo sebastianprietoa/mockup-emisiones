@@ -56,6 +56,9 @@ type Scope1Row = {
 };
 
 type Scope3Row = {
+  source: string;
+  installation: string;
+  businessUnit: string;
   category: string;
   activity: string;
   factor: string;
@@ -167,6 +170,14 @@ function getTotal(rows: Array<{ emissions_tco2e: number }>) {
 
 function getTopName(rows: Array<{ name: string; value: number }>) {
   return [...rows].sort((left, right) => right.value - left.value)[0]?.name ?? "";
+}
+
+function aggregateScope3ByKey(rows: EmissionsRecord[], key: "businessUnit" | "installation") {
+  return sumByField(
+    rows.map((row) => ({ name: row[key], value: row.emissions_tco2e })),
+    "name",
+    "value",
+  );
 }
 
 function getMonthlyVariation(rows: Array<{ emissions: number }>) {
@@ -315,24 +326,48 @@ export function buildEmissionsView(selection: Selection) {
     "value",
   ).map((item) => ({ category: item.name, emissions: item.value }));
 
-  const scope3TopSourceData = sumByField(
-    scope3Rows.map((row) => ({ name: row.source, value: row.emissions_tco2e })),
-    "name",
-    "value",
-  )
-    .slice(0, 10)
-    .map((item) => ({ source: item.name, emissions: item.value }));
+  const scope3BusinessUnitData = aggregateScope3ByKey(scope3Rows, "businessUnit").map((item) => ({
+    businessUnit: item.name,
+    emissions: item.value,
+  }));
 
-  const scope3TableRows: Scope3Row[] = scope3Rows
-    .slice()
-    .sort((left, right) => right.emissions_tco2e - left.emissions_tco2e)
-    .slice(0, 6)
+  const scope3TopInstallationData = aggregateScope3ByKey(scope3Rows, "installation")
+    .slice(0, 10)
+    .map((item) => ({ installation: item.name, emissions: item.value }));
+
+  const scope3MonthlyData = sortByMonth(
+    Array.from(
+      scope3Rows.reduce((map, row) => {
+        const entry = map.get(row.month) ?? { month: row.month, emissions: 0 };
+        entry.emissions += row.emissions_tco2e;
+        map.set(row.month, entry);
+        return map;
+      }, new Map<string, { month: string; emissions: number }>()),
+    ).map((entry) => entry[1]),
+  );
+
+  const scope3TableData = Array.from(
+    scope3Rows.reduce((map, row) => {
+      const entry = map.get(row.installation) ?? {
+        source: row.installation,
+        installation: row.installation,
+        businessUnit: row.businessUnit,
+        category: row.category,
+        activity: row.activity,
+        factor: `${row.factor.toFixed(3)} kgCO2e/${row.unit.toLowerCase()}`,
+        emissions: 0,
+        share: 0,
+      };
+      entry.emissions += row.emissions_tco2e;
+      map.set(row.installation, entry);
+      return map;
+    }, new Map<string, Scope3Row>()).values(),
+  )
+    .sort((left, right) => right.emissions - left.emissions)
+    .slice(0, 8)
     .map((row) => ({
-      category: row.category,
-      activity: row.activity,
-      factor: `${row.factor.toFixed(3)} kgCO2e/${row.unit.toLowerCase()}`,
-      emissions: row.emissions_tco2e,
-      share: totalEmissions ? (row.emissions_tco2e / totalEmissions) * 100 : 0,
+      ...row,
+      share: totalEmissions ? (row.emissions / totalEmissions) * 100 : 0,
     }));
 
   const scope2RenewableRows = scope2Rows.filter((row) => row.renewableShare !== null);
@@ -375,14 +410,20 @@ export function buildEmissionsView(selection: Selection) {
       "Location-based refleja el promedio de la red electrica donde opera la instalacion. Market-based incorpora contratos, certificados o instrumentos renovables y permite mostrar el efecto de la compra de energia mas alla de la red fisica.",
     scope3Kpis: {
       totalEmissions: scope3Rows.reduce((sum, row) => sum + row.emissions_tco2e, 0),
-      topCategory: getTopName(scope3CategoryData.map((item) => ({ name: item.category, value: item.emissions }))),
+      topBusinessUnit: getTopName(scope3BusinessUnitData.map((item) => ({ name: item.businessUnit, value: item.emissions }))),
+      topInstallation: getTopName(scope3TopInstallationData.map((item) => ({ name: item.installation, value: item.emissions }))),
+      peakMonth: getTopName(scope3MonthlyData.map((item) => ({ name: item.month, value: item.emissions }))),
       totalShare: totalEmissions ? (scope3Rows.reduce((sum, row) => sum + row.emissions_tco2e, 0) / totalEmissions) * 100 : 0,
-      reportedCategories: new Set(scope3Rows.map((row) => row.category)).size,
+      reportedInstallations: new Set(scope3Rows.map((row) => row.installation)).size,
+      monthlyVariation: getMonthlyVariation(scope3MonthlyData),
+      annualSource: "Disposicion final en vertederos de residuos solidos",
     },
     scope3CategoryData,
-    scope3TopSourceData,
-    scope3ShareData: scope3CategoryData.map((item) => ({ name: item.category, value: item.emissions })),
-    scope3TableRows,
+    scope3BusinessUnitData,
+    scope3TopInstallationData,
+    scope3MonthlyData,
+    scope3ShareData: scope3BusinessUnitData.map((item) => ({ name: item.businessUnit, value: item.emissions })),
+    scope3TableRows: scope3TableData,
   };
 }
 

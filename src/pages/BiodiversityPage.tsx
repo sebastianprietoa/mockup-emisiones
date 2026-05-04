@@ -1,19 +1,19 @@
-import { useState } from "react";
 import { BarChart } from "../components/charts/BarChart";
 import { ChartCard } from "../components/charts/ChartCard";
 import { LineChart } from "../components/charts/LineChart";
 import { FilterBar } from "../components/common/FilterBar";
 import { PageTitle } from "../components/common/PageTitle";
 import { BiodiversityKpiCard } from "../components/kpi/BiodiversityKpiCard";
+import { BiodiversityMap } from "../components/maps/BiodiversityMap";
 import { BiodiversityTable } from "../components/tables/BiodiversityTable";
 import { biodiversityFilters } from "../config/filters";
 import { buildBiodiversityView } from "../data/dashboardDatabase";
 import { ecosystemStatusData, vegetationCoverageData } from "../data/biodiversityData";
-import { buildInitialFilterValues } from "../utils/filterValues";
+import { useDashboardFilters } from "../context/DashboardFiltersContext";
 import { formatCompact } from "../utils/formatters";
 
 export function BiodiversityPage() {
-  const [filters, setFilters] = useState(() => buildInitialFilterValues(biodiversityFilters));
+  const { filters, setFilterValue } = useDashboardFilters();
   const view = buildBiodiversityView(filters);
 
   return (
@@ -24,12 +24,7 @@ export function BiodiversityPage() {
         description="Módulo complementario independiente de GEI para visualizar KPIs de especies, cobertura vegetal y monitoreo territorial."
       />
 
-      <FilterBar
-        fields={biodiversityFilters}
-        values={filters}
-        onChange={(fieldId, value) => setFilters((current) => ({ ...current, [fieldId]: value }))}
-        title="Filtros TNFD"
-      />
+      <FilterBar fields={biodiversityFilters} values={filters} onChange={setFilterValue} title="Filtros TNFD" />
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {view.kpis.map((item) => (
@@ -81,6 +76,8 @@ export function BiodiversityPage() {
           />
         </ChartCard>
       </section>
+
+      <BiodiversityMap />
 
       <section className="rounded-3xl border border-white/10 bg-slate-900/70 p-5 shadow-soft backdrop-blur">
         <h3 className="text-base font-semibold text-white">Tabla de monitoreo territorial</h3>
