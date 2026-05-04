@@ -9,8 +9,7 @@ type SidebarProps = {
   onClose: () => void;
 };
 
-const linkBase =
-  "group flex items-center gap-3 rounded-2xl border px-4 py-3 transition";
+const linkBase = "group flex items-center gap-3 rounded-2xl border px-4 py-3 transition";
 
 export function Sidebar({ open, onClose }: SidebarProps) {
   return (
@@ -20,9 +19,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
         onClick={onClose}
       />
       <aside
-        className={`fixed left-0 top-0 z-40 h-full w-72 border-r border-white/10 bg-slate-950/95 px-4 py-5 shadow-soft backdrop-blur transition-transform duration-300 md:translate-x-0 ${
-          open ? "translate-x-0" : "-translate-x-full md:translate-x-0"
-        }`}
+        className={`fixed left-0 top-0 z-40 h-full w-72 border-r border-white/10 bg-slate-950/95 px-4 py-5 shadow-soft backdrop-blur transition-transform duration-300 md:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
       >
         <div className="mb-6 flex items-start justify-between gap-3">
           <div className="min-w-0 space-y-3">
@@ -31,9 +28,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#39B54A]">
                 {projectTheme.clientName}
               </p>
-              <p className="mt-1 text-sm text-slate-400">
-                Dashboard GEI + Biodiversidad
-              </p>
+              <p className="mt-1 text-sm text-slate-400">Dashboard de GEI + biodiversidad</p>
             </div>
           </div>
           <button
@@ -64,9 +59,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
                 </span>
                 <span className="min-w-0">
                   <span className="block text-sm font-medium">{item.label}</span>
-                  <span className="block truncate text-xs text-slate-400">
-                    {item.description}
-                  </span>
+                  <span className="block truncate text-xs text-slate-400">{item.description}</span>
                 </span>
               </NavLink>
             );
@@ -76,3 +69,4 @@ export function Sidebar({ open, onClose }: SidebarProps) {
     </>
   );
 }
+

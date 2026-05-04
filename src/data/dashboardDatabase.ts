@@ -79,6 +79,33 @@ const monthOrder = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep
 const emissionsFilterFields = ["year", "installation", "country", "businessUnit"] as const;
 const biodiversityFilterFields = ["campaign", "zone"] as const;
 
+function normalizeCsvText(value: string) {
+  return value
+    .replace(/Consumo de Energ\?a El\?ctrica/g, "Consumo de Energía Eléctrica")
+    .replace(/Consumo de energ\?a el\?ctrica/g, "Consumo de energía eléctrica")
+    .replace(/Disposici\?n Final en Vertederos de Residuos S\?lidos/g, "Disposición Final en Vertederos de Residuos Sólidos")
+    .replace(/Disposici\?n final de residuos s\?lidos/g, "Disposición final de residuos sólidos")
+    .replace(/Atacame\?a/g, "Atacameña")
+    .replace(/Caba\?as/g, "Cabañas")
+    .replace(/Caf\?/g, "Café")
+    .replace(/M\?stica/g, "Mística")
+    .replace(/Rio Yaye/g, "Río Yaye")
+    .replace(/Ã¡/g, "á")
+    .replace(/Ã©/g, "é")
+    .replace(/Ã­/g, "í")
+    .replace(/Ã³/g, "ó")
+    .replace(/Ãº/g, "ú")
+    .replace(/Ã±/g, "ñ")
+    .replace(/Ã/g, "Á")
+    .replace(/Ã‰/g, "É")
+    .replace(/Ã/g, "Í")
+    .replace(/Ã“/g, "Ó")
+    .replace(/Ãš/g, "Ú")
+    .replace(/Ã‘/g, "Ñ")
+    .replace(/Â·/g, "·")
+    .replace(/Â/g, "");
+}
+
 function parseCsv(raw: string) {
   const lines = raw.trim().split(/\r?\n/);
   const headers = lines.shift()?.split(";").map((value) => value.trim()) ?? [];
@@ -88,7 +115,7 @@ function parseCsv(raw: string) {
     .map((line) => {
       const values = line.split(";");
       return headers.reduce<CsvRow>((acc, header, index) => {
-        acc[header] = (values[index] ?? "").trim();
+        acc[header] = normalizeCsvText((values[index] ?? "").trim());
         return acc;
       }, {});
     });
@@ -407,7 +434,7 @@ export function buildEmissionsView(selection: Selection) {
     scope2InstallationData,
     scope2ComparisonData,
     scope2Explanation:
-      "Location-based refleja el promedio de la red electrica donde opera la instalacion. Market-based incorpora contratos, certificados o instrumentos renovables y permite mostrar el efecto de la compra de energia mas alla de la red fisica.",
+      "Location-based refleja el promedio de la red eléctrica donde opera la instalación. Market-based incorpora contratos, certificados o instrumentos renovables y permite mostrar el efecto de la compra de energía más allá de la red física.",
     scope3Kpis: {
       totalEmissions: scope3Rows.reduce((sum, row) => sum + row.emissions_tco2e, 0),
       topBusinessUnit: getTopName(scope3BusinessUnitData.map((item) => ({ name: item.businessUnit, value: item.emissions }))),
@@ -416,7 +443,7 @@ export function buildEmissionsView(selection: Selection) {
       totalShare: totalEmissions ? (scope3Rows.reduce((sum, row) => sum + row.emissions_tco2e, 0) / totalEmissions) * 100 : 0,
       reportedInstallations: new Set(scope3Rows.map((row) => row.installation)).size,
       monthlyVariation: getMonthlyVariation(scope3MonthlyData),
-      annualSource: "Disposicion final en vertederos de residuos solidos",
+      annualSource: "Disposición final en vertederos de residuos sólidos",
     },
     scope3CategoryData,
     scope3BusinessUnitData,
