@@ -34,3 +34,39 @@ table {
   border-collapse: collapse;
 }
 
+.leaflet-container {
+  font-family: inherit;
+  background: #0f172a;
+}
+
+.leaflet-control-zoom {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.leaflet-control-zoom a {
+  background: rgba(15, 23, 42, 0.92);
+  color: #e2e8f0;
+  border: 0;
+}
+
+.leaflet-control-zoom a:hover {
+  background: rgba(30, 41, 59, 0.96);
+  color: #ffffff;
+}
+
+.leaflet-tooltip.biodiversity-tooltip {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.96);
+  color: #e2e8f0;
+  padding: 6px 12px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.leaflet-tooltip.biodiversity-tooltip::before {
+  border-top-color: rgba(148, 163, 184, 0.18);
+}

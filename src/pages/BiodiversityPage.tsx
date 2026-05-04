@@ -3,6 +3,7 @@ import { ChartCard } from "../components/charts/ChartCard";
 import { LineChart } from "../components/charts/LineChart";
 import { FilterBar } from "../components/common/FilterBar";
 import { PageTitle } from "../components/common/PageTitle";
+import { BiodiversityMap } from "../components/maps/BiodiversityMap";
 import { BiodiversityKpiCard } from "../components/kpi/BiodiversityKpiCard";
 import { BiodiversityTable } from "../components/tables/BiodiversityTable";
 import { biodiversityFilters } from "../config/filters";
@@ -75,6 +76,8 @@ export function BiodiversityPage() {
           />
         </ChartCard>
       </section>
+
+      <BiodiversityMap />
 
       <section className="rounded-3xl border border-white/10 bg-slate-900/70 p-5 shadow-soft backdrop-blur">
         <h3 className="text-base font-semibold text-white">Tabla de monitoreo territorial</h3>
