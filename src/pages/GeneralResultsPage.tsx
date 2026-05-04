@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BarChart } from "../components/charts/BarChart";
 import { ChartCard } from "../components/charts/ChartCard";
 import { DonutChart } from "../components/charts/DonutChart";
@@ -7,15 +8,14 @@ import { PageTitle } from "../components/common/PageTitle";
 import { KpiCard } from "../components/kpi/KpiCard";
 import { EmissionsTable } from "../components/tables/EmissionsTable";
 import { generalFilters } from "../config/filters";
-import {
-  generalCategoryData,
-  generalMonthlyData,
-  generalScopeBreakdown,
-  generalTableRows,
-} from "../data/emissionsSummary";
+import { buildEmissionsView } from "../data/dashboardDatabase";
+import { buildInitialFilterValues } from "../utils/filterValues";
 import { formatTons } from "../utils/formatters";
 
 export function GeneralResultsPage() {
+  const [filters, setFilters] = useState(() => buildInitialFilterValues(generalFilters));
+  const view = buildEmissionsView(filters);
+
   return (
     <div className="space-y-6">
       <PageTitle
@@ -24,14 +24,18 @@ export function GeneralResultsPage() {
         description="Resumen consolidado de Alcance 1, Alcance 2 y Alcance 3, con lectura gráfica y tabla de trazabilidad para análisis ejecutivo."
       />
 
-      <FilterBar fields={generalFilters} />
+      <FilterBar
+        fields={generalFilters}
+        values={filters}
+        onChange={(fieldId, value) => setFilters((current) => ({ ...current, [fieldId]: value }))}
+      />
 
       <section className="grid gap-4 md:grid-cols-3">
-        {generalScopeBreakdown.map((scope) => (
+        {view.scopeBreakdown.map((scope) => (
           <KpiCard
             key={scope.name}
             label={scope.name}
-            value={formatTons(scope.emissions)}
+            value={formatTons(scope.value)}
             helper="Peso relativo dentro del inventario."
           />
         ))}
@@ -39,12 +43,12 @@ export function GeneralResultsPage() {
 
       <section className="grid gap-6 xl:grid-cols-2">
         <ChartCard title="Distribución por alcance" description="Vista donut para el inventario consolidado.">
-          <DonutChart data={generalScopeBreakdown} dataKey="emissions" nameKey="name" />
+          <DonutChart data={view.scopeBreakdown} dataKey="value" nameKey="name" />
         </ChartCard>
 
         <ChartCard title="Emisiones por categoría" description="Agrupación ejecutiva por fuentes principales.">
           <BarChart
-            data={generalCategoryData}
+            data={view.categoryData}
             xKey="category"
             series={[{ key: "emissions", name: "tCO2e" }]}
           />
@@ -52,7 +56,7 @@ export function GeneralResultsPage() {
 
         <ChartCard title="Evolución mensual" description="Tendencia simulada por alcance.">
           <LineChart
-            data={generalMonthlyData}
+            data={view.monthlyData}
             xKey="month"
             series={[
               { key: "scope1", name: "Scope 1" },
@@ -69,7 +73,7 @@ export function GeneralResultsPage() {
           </p>
           <div className="mt-4">
             <EmissionsTable
-              rows={generalTableRows}
+              rows={view.tableRows}
               columns={[
                 { key: "source", label: "Fuente de emisión" },
                 { key: "scope", label: "Alcance" },
@@ -85,4 +89,3 @@ export function GeneralResultsPage() {
     </div>
   );
 }
-

@@ -1,6 +1,8 @@
 import { X } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { navigation } from "../../config/navigation";
+import { projectTheme } from "../../config/theme";
+import { BrandLogo } from "./BrandLogo";
 
 type SidebarProps = {
   open: boolean;
@@ -23,13 +25,16 @@ export function Sidebar({ open, onClose }: SidebarProps) {
         }`}
       >
         <div className="mb-6 flex items-start justify-between gap-3">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-300">
-              Navegación
-            </p>
-            <p className="mt-1 text-sm text-slate-400">
-              Dashboard GEI + Biodiversidad
-            </p>
+          <div className="min-w-0 space-y-3">
+            <BrandLogo className="h-14 w-[160px]" />
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#39B54A]">
+                {projectTheme.clientName}
+              </p>
+              <p className="mt-1 text-sm text-slate-400">
+                Dashboard GEI + Biodiversidad
+              </p>
+            </div>
           </div>
           <button
             type="button"
@@ -71,4 +76,3 @@ export function Sidebar({ open, onClose }: SidebarProps) {
     </>
   );
 }
-
