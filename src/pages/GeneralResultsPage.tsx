@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BarChart } from "../components/charts/BarChart";
 import { ChartCard } from "../components/charts/ChartCard";
 import { DonutChart } from "../components/charts/DonutChart";
@@ -7,13 +6,13 @@ import { FilterBar } from "../components/common/FilterBar";
 import { PageTitle } from "../components/common/PageTitle";
 import { KpiCard } from "../components/kpi/KpiCard";
 import { EmissionsTable } from "../components/tables/EmissionsTable";
+import { useDashboardFilters } from "../context/DashboardFiltersContext";
 import { generalFilters } from "../config/filters";
 import { buildEmissionsView } from "../data/dashboardDatabase";
-import { buildInitialFilterValues } from "../utils/filterValues";
 import { formatTons } from "../utils/formatters";
 
 export function GeneralResultsPage() {
-  const [filters, setFilters] = useState(() => buildInitialFilterValues(generalFilters));
+  const { filters, setFilterValue } = useDashboardFilters();
   const view = buildEmissionsView(filters);
 
   return (
@@ -27,7 +26,7 @@ export function GeneralResultsPage() {
       <FilterBar
         fields={generalFilters}
         values={filters}
-        onChange={(fieldId, value) => setFilters((current) => ({ ...current, [fieldId]: value }))}
+        onChange={setFilterValue}
       />
 
       <section className="grid gap-4 md:grid-cols-3">
