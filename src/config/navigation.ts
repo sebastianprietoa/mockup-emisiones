@@ -9,7 +9,7 @@ import {
 
 export const navigation = [
   {
-    label: "Home",
+    label: "Inicio",
     path: "/",
     description: "Resumen ejecutivo",
     icon: LayoutDashboard,
@@ -17,23 +17,23 @@ export const navigation = [
   {
     label: "Resultados generales",
     path: "/resultados-generales",
-    description: "Distribución corporativa",
+    description: "Inventario consolidado",
     icon: BarChart3,
   },
   {
-    label: "Scope 1",
+    label: "Alcance 1",
     path: "/scope1",
     description: "Emisiones directas",
     icon: ShieldCheck,
   },
   {
-    label: "Scope 2",
+    label: "Alcance 2",
     path: "/scope2",
     description: "Electricidad y energía",
     icon: ScanSearch,
   },
   {
-    label: "Scope 3",
+    label: "Alcance 3",
     path: "/scope3",
     description: "Cadena de valor",
     icon: Wheat,
@@ -45,4 +45,3 @@ export const navigation = [
     icon: Leaf,
   },
 ] as const;
-

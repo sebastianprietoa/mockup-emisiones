@@ -40,8 +40,10 @@ export function BiodiversityPage() {
         ))}
       </section>
 
+      <BiodiversityMap />
+
       <section className="grid gap-6 xl:grid-cols-2">
-        <ChartCard title="Evolución de riqueza de especies" description="Serie temporal de diversidad registrada.">
+        <ChartCard title="Riqueza de especies por campaña" description="Serie temporal de diversidad registrada.">
           <LineChart
             data={view.rows
               .filter((row) => row.kpi === "Riqueza de especies")
@@ -51,10 +53,10 @@ export function BiodiversityPage() {
             series={[{ key: "species", name: "Especies" }]}
           />
         </ChartCard>
-        <ChartCard title="Cobertura vegetal por tipo" description="Superficie simulada por comunidad vegetal.">
+        <ChartCard title="Cobertura vegetal por formación" description="Superficie simulada por comunidad vegetal.">
           <BarChart data={vegetationCoverageData} xKey="type" series={[{ key: "hectares", name: "Hectáreas" }]} />
         </ChartCard>
-        <ChartCard title="Estado de ecosistemas por zona" description="Distribución de condiciones ecológicas.">
+        <ChartCard title="Estado ecosistémico por zona" description="Distribución de condiciones ecológicas.">
           <BarChart
             data={ecosystemStatusData}
             xKey="zone"
@@ -77,8 +79,6 @@ export function BiodiversityPage() {
         </ChartCard>
       </section>
 
-      <BiodiversityMap />
-
       <section className="rounded-3xl border border-white/10 bg-slate-900/70 p-5 shadow-soft backdrop-blur">
         <h3 className="text-base font-semibold text-white">Tabla de monitoreo territorial</h3>
         <p className="mt-1 text-sm text-slate-400">
@@ -91,3 +91,4 @@ export function BiodiversityPage() {
     </div>
   );
 }
+
