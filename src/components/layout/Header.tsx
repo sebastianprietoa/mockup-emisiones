@@ -87,3 +87,4 @@ export function Header({ onMenuClick, menuIcon: MenuIcon = Menu }: HeaderProps) 
     </header>
   );
 }
+

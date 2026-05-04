@@ -38,19 +38,6 @@ function getPointIcon(point: BiodiversityGeoPoint, active: boolean) {
   });
 }
 
-function MapController({ point }: { point: BiodiversityGeoPoint }) {
-  const map = useMap();
-
-  useEffect(() => {
-    map.flyTo([point.latitude, point.longitude], 12, {
-      animate: true,
-      duration: 0.85,
-    });
-  }, [map, point.latitude, point.longitude]);
-
-  return null;
-}
-
 function BoundsController() {
   const map = useMap();
 
