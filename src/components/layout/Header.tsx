@@ -2,6 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import { ChevronDown, Menu } from "lucide-react";
 import { installationOptions, yearOptions } from "../../config/filters";
 import { projectTheme } from "../../config/theme";
+import { BrandLogo } from "./BrandLogo";
 
 type HeaderProps = {
   onMenuClick: () => void;
@@ -22,13 +23,18 @@ export function Header({ onMenuClick, menuIcon: MenuIcon = Menu }: HeaderProps) 
         </button>
 
         <div className="min-w-0 flex-1">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-300">
-            {projectTheme.clientName}
-          </p>
-          <h1 className="truncate text-lg font-semibold text-white sm:text-xl">
-            {projectTheme.projectName}
-          </h1>
-          <p className="text-sm text-slate-400">{projectTheme.subtitle}</p>
+          <div className="flex items-center gap-3">
+            <BrandLogo className="h-12 w-[128px]" />
+            <div className="min-w-0">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#39B54A]">
+                {projectTheme.clientName}
+              </p>
+              <h1 className="truncate text-lg font-semibold text-white sm:text-xl">
+                {projectTheme.projectName}
+              </h1>
+            </div>
+          </div>
+          <p className="mt-1 text-sm text-slate-400">{projectTheme.subtitle}</p>
         </div>
 
         <div className="hidden items-center gap-3 lg:flex">
@@ -42,7 +48,10 @@ export function Header({ onMenuClick, menuIcon: MenuIcon = Menu }: HeaderProps) 
                   </option>
                 ))}
               </select>
-              <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+              <ChevronDown
+                className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
+                size={16}
+              />
             </div>
           </label>
 
@@ -56,7 +65,10 @@ export function Header({ onMenuClick, menuIcon: MenuIcon = Menu }: HeaderProps) 
                   </option>
                 ))}
               </select>
-              <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+              <ChevronDown
+                className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
+                size={16}
+              />
             </div>
           </label>
         </div>
@@ -64,4 +76,3 @@ export function Header({ onMenuClick, menuIcon: MenuIcon = Menu }: HeaderProps) 
     </header>
   );
 }
-

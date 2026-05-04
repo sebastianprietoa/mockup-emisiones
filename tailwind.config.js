@@ -8,10 +8,9 @@ export default {
       },
       backgroundImage: {
         "dashboard-radial":
-          "radial-gradient(circle at top, rgba(16,185,129,0.16), transparent 34%), radial-gradient(circle at right, rgba(20,184,166,0.12), transparent 26%), linear-gradient(180deg, #0f172a 0%, #08111d 100%)",
+          "radial-gradient(circle at top, rgba(57,181,74,0.16), transparent 34%), radial-gradient(circle at right, rgba(0,169,157,0.12), transparent 26%), linear-gradient(180deg, #07100d 0%, #030704 100%)",
       },
     },
   },
   plugins: [],
 };
-
