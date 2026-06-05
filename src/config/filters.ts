@@ -101,3 +101,19 @@ export const biodiversityFilters: FilterField[] = [
   { id: "campaign", label: "Campaña", options: campaignOptions },
   { id: "zone", label: "Zona", options: zoneOptions },
 ];
+
+export const waterFilters: FilterField[] = [
+  { id: "year", label: "Año", options: yearOptions },
+  { id: "installation", label: "Instalación", options: installationOptions },
+  {
+    id: "basin",
+    label: "Cuenca",
+    options: [
+      allOption,
+      { label: "Loa", value: "Loa" },
+      { label: "Maipo", value: "Maipo" },
+      { label: "Aconcagua", value: "Aconcagua" },
+      { label: "Bío-Bío", value: "Bío-Bío" },
+    ],
+  },
+];

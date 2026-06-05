@@ -28,7 +28,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#39B54A]">
                 {projectTheme.clientName}
               </p>
-              <p className="mt-1 text-sm text-slate-400">Dashboard de GEI + biodiversidad</p>
+              <p className="mt-1 text-sm text-slate-400">Dashboard de GEI, agua y biodiversidad</p>
             </div>
           </div>
           <button
@@ -69,4 +69,3 @@ export function Sidebar({ open, onClose }: SidebarProps) {
     </>
   );
 }
-
