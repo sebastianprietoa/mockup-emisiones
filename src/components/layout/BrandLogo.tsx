@@ -1,4 +1,4 @@
-import logoUrl from "../../../assets/Brand/LOGO_APLICACIONES/PNGS/LOGO_APLICACIONES_Mesa de trabajo 1 copia 4.png";
+import logoUrl from "../../assets/brand/gt-logo.png";
 
 type BrandLogoProps = {
   className?: string;
