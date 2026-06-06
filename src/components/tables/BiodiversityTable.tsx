@@ -1,6 +1,6 @@
 import { StatusBadge } from "../common/StatusBadge";
 
-type BiodiversityRow = {
+type BiodiversityTableRow = {
   zone: string;
   indicator: string;
   value: number;
@@ -9,41 +9,36 @@ type BiodiversityRow = {
   status: "bueno" | "medio" | "crítico";
 };
 
-export function BiodiversityTable({ rows }: { rows: BiodiversityRow[] }) {
+type BiodiversityTableProps = {
+  rows: BiodiversityTableRow[];
+  columns?: Array<{ key: string; label: string }>;
+};
+
+export function BiodiversityTable({ rows }: BiodiversityTableProps) {
   return (
-    <div className="overflow-hidden rounded-3xl border border-white/10">
-      <table className="min-w-full divide-y divide-white/10">
-        <thead className="bg-slate-950/60">
+    <div className="overflow-hidden rounded-[24px] border border-[#D7CCC1]">
+      <table className="min-w-full divide-y divide-[#D7CCC1] bg-[#FFF9F1]">
+        <thead className="bg-[#EBE6DB]">
           <tr>
-            <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-              Zona
-            </th>
-            <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-              Indicador
-            </th>
-            <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-              Valor
-            </th>
-            <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-              Estado
-            </th>
-            <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-              Fuente
-            </th>
+            <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-[#5B6165]">Zona</th>
+            <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-[#5B6165]">Indicador</th>
+            <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-[#5B6165]">Valor</th>
+            <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-[#5B6165]">Fuente</th>
+            <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.18em] text-[#5B6165]">Estado</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-white/10 bg-slate-900/60">
+        <tbody className="divide-y divide-[#E3D8CB]">
           {rows.map((row) => (
-            <tr key={`${row.zone}-${row.indicator}`} className="hover:bg-white/5">
-              <td className="px-4 py-4 text-sm text-slate-200">{row.zone}</td>
-              <td className="px-4 py-4 text-sm text-slate-200">{row.indicator}</td>
-              <td className="px-4 py-4 text-sm text-slate-200">
+            <tr key={`${row.zone}-${row.indicator}`} className="hover:bg-[#F7EFE5]">
+              <td className="px-4 py-4 text-sm text-[#362F32]">{row.zone}</td>
+              <td className="px-4 py-4 text-sm text-[#362F32]">{row.indicator}</td>
+              <td className="px-4 py-4 text-sm text-[#362F32]">
                 {row.value} {row.unit}
               </td>
-              <td className="px-4 py-4 text-sm text-slate-200">
+              <td className="px-4 py-4 text-sm text-[#5B6165]">{row.source}</td>
+              <td className="px-4 py-4 text-sm">
                 <StatusBadge tone={row.status} />
               </td>
-              <td className="px-4 py-4 text-sm text-slate-300">{row.source}</td>
             </tr>
           ))}
         </tbody>
@@ -51,4 +46,3 @@ export function BiodiversityTable({ rows }: { rows: BiodiversityRow[] }) {
     </div>
   );
 }
-

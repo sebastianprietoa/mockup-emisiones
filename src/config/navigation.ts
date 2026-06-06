@@ -1,5 +1,6 @@
 import {
   BarChart3,
+  Droplets,
   Leaf,
   LayoutDashboard,
   ScanSearch,
@@ -43,5 +44,11 @@ export const navigation = [
     path: "/biodiversidad",
     description: "TNFD y naturaleza",
     icon: Leaf,
+  },
+  {
+    label: "Huella hídrica",
+    path: "/huella-hidrica",
+    description: "Agua azul, verde y gris",
+    icon: Droplets,
   },
 ] as const;

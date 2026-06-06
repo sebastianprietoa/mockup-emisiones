@@ -1,46 +1,64 @@
 export const projectTheme = {
-  clientName: "Green Ticket",
-  projectName: "Panel de Inteligencia de Carbono",
-  subtitle: "Mockup ejecutivo de GEI y biodiversidad",
+  clientName: "Territorio Vivo",
+  projectName: "Panel de Inteligencia Ambiental",
+  subtitle: "Mockup ejecutivo de GEI, agua y biodiversidad",
 };
+
+export const brandColors = {
+  plumDark: "#261B26",
+  plum: "#3A283A",
+  sand: "#F4E8DA",
+  cream: "#FFF9F1",
+  creamAlt: "#EBE6DB",
+  text: "#362F32",
+  textMuted: "#5B6165",
+  cyan: "#0BA4DE",
+  magenta: "#EC1B91",
+  orange: "#F2753D",
+  yellow: "#F5B400",
+  olive: "#9EA900",
+  blueGray: "#486570",
+  good: "#499457",
+  critical: "#A44B41",
+} as const;
 
 export const statusTone = {
   bueno: {
     label: "Bueno",
-    classes: "bg-[#39B54A]/15 text-[#B9F4C0] ring-1 ring-[#39B54A]/30",
+    classes: "bg-[#9EA900]/15 text-[#617000] ring-1 ring-[#9EA900]/30",
   },
   medio: {
     label: "Medio",
-    classes: "bg-[#F7931E]/15 text-[#FFD39D] ring-1 ring-[#F7931E]/30",
+    classes: "bg-[#F5B400]/18 text-[#7A5C00] ring-1 ring-[#F5B400]/30",
   },
   crítico: {
     label: "Crítico",
-    classes: "bg-[#ED1C24]/15 text-[#FFC0C3] ring-1 ring-[#ED1C24]/30",
+    classes: "bg-[#A44B41]/15 text-[#7E312A] ring-1 ring-[#A44B41]/30",
   },
 } as const;
 
 export const trendTone = {
   alza: {
     label: "Alza",
-    classes: "bg-[#ED1C24]/15 text-[#FFC0C3] ring-1 ring-[#ED1C24]/30",
+    classes: "bg-[#F2753D]/15 text-[#8E3D17] ring-1 ring-[#F2753D]/30",
   },
   baja: {
     label: "Baja",
-    classes: "bg-[#39B54A]/15 text-[#B9F4C0] ring-1 ring-[#39B54A]/30",
+    classes: "bg-[#0BA4DE]/15 text-[#005F83] ring-1 ring-[#0BA4DE]/30",
   },
   estable: {
     label: "Estable",
-    classes: "bg-slate-500/15 text-slate-200 ring-1 ring-slate-400/30",
+    classes: "bg-[#486570]/15 text-[#486570] ring-1 ring-[#486570]/30",
   },
 } as const;
 
 export const chartPalette = [
-  "#39B54A",
-  "#00A99D",
-  "#29ABE2",
-  "#F7931E",
-  "#ED1C24",
-  "#662D91",
-  "#C69C6D",
-  "#998675",
+  brandColors.cyan,
+  brandColors.magenta,
+  brandColors.orange,
+  brandColors.yellow,
+  brandColors.olive,
+  brandColors.blueGray,
+  "#7A5C00",
+  "#D45B7A",
 ];

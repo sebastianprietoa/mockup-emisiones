@@ -1,9 +1,9 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
-import { biodiversityFilters, generalFilters } from "../config/filters";
+import { biodiversityFilters, generalFilters, waterFilters } from "../config/filters";
 import { buildInitialFilterValues } from "../utils/filterValues";
 
-const dashboardFilterFields = [...generalFilters, ...biodiversityFilters];
+const dashboardFilterFields = [...generalFilters, ...biodiversityFilters, ...waterFilters];
 
 type DashboardFiltersValue = Record<string, string>;
 

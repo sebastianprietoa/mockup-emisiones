@@ -12,6 +12,9 @@ const Scope3Page = lazy(() => import("../pages/Scope3Page").then((module) => ({ 
 const BiodiversityPage = lazy(() =>
   import("../pages/BiodiversityPage").then((module) => ({ default: module.BiodiversityPage })),
 );
+const WaterFootprintPage = lazy(() =>
+  import("../pages/WaterFootprintPage").then((module) => ({ default: module.WaterFootprintPage })),
+);
 
 function PageFallback() {
   return (
@@ -33,6 +36,7 @@ export function AppRouter() {
             <Route path="scope2" element={<Scope2Page />} />
             <Route path="scope3" element={<Scope3Page />} />
             <Route path="biodiversidad" element={<BiodiversityPage />} />
+            <Route path="huella-hidrica" element={<WaterFootprintPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>

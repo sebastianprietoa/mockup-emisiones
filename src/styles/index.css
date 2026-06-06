@@ -2,8 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Gotham Narrow";
+  src: url("../../assets/Brand/TIPOGRAFIAS/Gotham Narrow/GothamNarrow-Book.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gotham Narrow";
+  src: url("../../assets/Brand/TIPOGRAFIAS/Gotham XNarrow/GothamXNarrow-Book.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Gotham Narrow";
+  src: url("../../assets/Brand/TIPOGRAFIAS/Gotham XNarrow/GothamXNarrow-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gotham Narrow";
+  src: url("../../assets/Brand/TIPOGRAFIAS/Gotham XNarrow/GothamXNarrow-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html,
@@ -14,11 +42,13 @@ body,
 
 body {
   margin: 0;
-  font-family: Inter, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Gotham Narrow", "Arial Narrow", "Helvetica Neue", sans-serif;
   background:
-    radial-gradient(circle at top left, rgba(57, 181, 74, 0.14), transparent 24%),
-    radial-gradient(circle at top right, rgba(0, 169, 157, 0.08), transparent 18%),
-    linear-gradient(180deg, #020403 0%, #07100d 100%);
+    radial-gradient(circle at 88% 18%, rgba(236, 27, 145, 0.16), transparent 12%),
+    radial-gradient(circle at 78% 78%, rgba(11, 164, 222, 0.12), transparent 14%),
+    radial-gradient(circle at 18% 72%, rgba(158, 169, 0, 0.14), transparent 18%),
+    linear-gradient(180deg, #f4e8da 0%, #f7efe5 100%);
+  color: #362f32;
 }
 
 * {
@@ -26,7 +56,7 @@ body {
 }
 
 ::selection {
-  background: rgba(57, 181, 74, 0.35);
+  background: rgba(236, 27, 145, 0.3);
   color: #fff;
 }
 
@@ -36,37 +66,37 @@ table {
 
 .leaflet-container {
   font-family: inherit;
-  background: #0f172a;
+  background: #f4e8da;
 }
 
 .leaflet-control-zoom {
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(54, 47, 50, 0.12);
+  box-shadow: 0 18px 40px rgba(54, 47, 50, 0.12);
 }
 
 .leaflet-control-zoom a {
-  background: rgba(15, 23, 42, 0.92);
-  color: #e2e8f0;
+  background: rgba(255, 249, 241, 0.96);
+  color: #362f32;
   border: 0;
 }
 
 .leaflet-control-zoom a:hover {
-  background: rgba(30, 41, 59, 0.96);
-  color: #ffffff;
+  background: rgba(235, 230, 219, 0.96);
+  color: #261b26;
 }
 
 .leaflet-tooltip.biodiversity-tooltip {
-  border: 1px solid rgba(148, 163, 184, 0.18);
+  border: 1px solid rgba(54, 47, 50, 0.12);
   border-radius: 9999px;
-  background: rgba(15, 23, 42, 0.96);
-  color: #e2e8f0;
+  background: rgba(255, 249, 241, 0.98);
+  color: #362f32;
   padding: 6px 12px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 18px 40px rgba(54, 47, 50, 0.12);
   font-size: 12px;
   font-weight: 600;
 }
 
 .leaflet-tooltip.biodiversity-tooltip::before {
-  border-top-color: rgba(148, 163, 184, 0.18);
+  border-top-color: rgba(54, 47, 50, 0.12);
 }
