@@ -2,11 +2,12 @@ import { formatPercent } from "../../utils/formatters";
 
 type EmissionsTableRow = {
   source: string;
-  scope: string;
+  scope?: string;
   activity: string;
   factor: string;
   emissions: number;
   share: number;
+  [key: string]: string | number | undefined;
 };
 
 type EmissionsTableProps = {
