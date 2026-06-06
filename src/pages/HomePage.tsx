@@ -24,38 +24,11 @@ export function HomePage() {
       />
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-        <KpiCard
-          label="Huella total"
-          value={formatTons(totalEmissions)}
-          helper="Inventario consolidado de la organización."
-          icon={<Leaf size={18} />}
-        />
-        <KpiCard
-          label="Mayor alcance"
-          value={mainScope}
-          helper="Categoría con mayor contribución al total."
-          icon={<ArrowUpRight size={18} />}
-        />
-        <KpiCard
-          label="Variación interanual"
-          value={formatSignedPercent(-6.4)}
-          helper="Reducción simulada respecto del año previo."
-          trend="baja"
-          icon={<TrendingDown size={18} />}
-        />
-        <KpiCard
-          label="Intensidad GEI"
-          value={`${intensity.toFixed(2)} tCO2e/M$`}
-          helper="Indicador de eficiencia climática."
-          icon={<Gauge size={18} />}
-        />
-        <KpiCard
-          label="Avance de metas"
-          value={formatPercent(goalProgress)}
-          helper="Progreso visual frente a la meta interna."
-          status="bueno"
-          icon={<Target size={18} />}
-        />
+        <KpiCard label="Huella total" value={formatTons(totalEmissions)} helper="Inventario consolidado de la organización." icon={<Leaf size={18} />} />
+        <KpiCard label="Mayor alcance" value={mainScope} helper="Categoría con mayor contribución al total." icon={<ArrowUpRight size={18} />} />
+        <KpiCard label="Variación interanual" value={formatSignedPercent(-6.4)} helper="Reducción simulada respecto del año previo." trend="baja" icon={<TrendingDown size={18} />} />
+        <KpiCard label="Intensidad GEI" value={`${intensity.toFixed(2)} tCO2e/M$`} helper="Indicador de eficiencia climática." icon={<Gauge size={18} />} />
+        <KpiCard label="Avance de metas" value={formatPercent(goalProgress)} helper="Progreso visual frente a la meta interna." status="bueno" icon={<Target size={18} />} />
       </section>
 
       <section className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
@@ -63,31 +36,29 @@ export function HomePage() {
           <DonutChart data={view.scopeBreakdown} dataKey="value" nameKey="name" />
         </ChartCard>
 
-        <div className="rounded-3xl border border-white/10 bg-slate-900/70 p-6 shadow-soft backdrop-blur">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-300">
-            Mensaje ejecutivo
-          </p>
+        <div className="rounded-[28px] border border-[#D7CCC1] bg-[#FFF9F1] p-6 shadow-soft backdrop-blur">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#0BA4DE]">Mensaje ejecutivo</p>
           <div className="mt-4 space-y-4">
-            <p className="text-lg font-medium leading-8 text-white">
+            <p className="text-lg font-medium leading-8 text-[#362F32]">
               La carga principal se concentra en la cadena de valor, por lo que el mayor potencial de mejora está en proveedores, logística y decisiones de compra.
             </p>
-            <p className="text-sm leading-7 text-slate-300">
+            <p className="text-sm leading-7 text-[#5B6165]">
               La vista se alimenta de la misma base estática que los módulos por alcance, por lo que los filtros de año e instalación actualizan el resumen ejecutivo en tiempo real.
             </p>
           </div>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Lectura</p>
-              <p className="mt-2 text-sm text-slate-200">Reporte listo para comité ejecutivo.</p>
+            <div className="rounded-2xl border border-[#D7CCC1] bg-[#EBE6DB] p-4">
+              <p className="text-xs uppercase tracking-[0.18em] text-[#5B6165]">Lectura</p>
+              <p className="mt-2 text-sm text-[#362F32]">Reporte listo para comité ejecutivo.</p>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Enfoque</p>
-              <p className="mt-2 text-sm text-slate-200">GHG Protocol como marco conceptual.</p>
+            <div className="rounded-2xl border border-[#D7CCC1] bg-[#EBE6DB] p-4">
+              <p className="text-xs uppercase tracking-[0.18em] text-[#5B6165]">Enfoque</p>
+              <p className="mt-2 text-sm text-[#362F32]">GHG Protocol como marco conceptual.</p>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Naturaleza</p>
-              <p className="mt-2 text-sm text-slate-200">Módulo TNFD separado para biodiversidad.</p>
+            <div className="rounded-2xl border border-[#D7CCC1] bg-[#EBE6DB] p-4">
+              <p className="text-xs uppercase tracking-[0.18em] text-[#5B6165]">Naturaleza</p>
+              <p className="mt-2 text-sm text-[#362F32]">Módulo TNFD separado para biodiversidad.</p>
             </div>
           </div>
         </div>
@@ -95,4 +66,3 @@ export function HomePage() {
     </div>
   );
 }
-

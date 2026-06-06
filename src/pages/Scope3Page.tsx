@@ -27,31 +27,11 @@ export function Scope3Page() {
       <FilterBar fields={scopeFilters} values={filters} onChange={setFilterValue} title="Filtros de Alcance 3" />
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-        <KpiCard
-          label="tCO2e Alcance 3"
-          value={formatTons(view.scope3Kpis.totalEmissions)}
-          helper="Inventario de cadena de valor."
-        />
-        <KpiCard
-          label="Unidad más emisora"
-          value={view.scope3Kpis.topBusinessUnit}
-          helper="Unidad de negocio con mayor peso."
-        />
-        <KpiCard
-          label="Instalación más emisora"
-          value={view.scope3Kpis.topInstallation}
-          helper="Principal contribución individual."
-        />
-        <KpiCard
-          label="Mes pico"
-          value={view.scope3Kpis.peakMonth}
-          helper="Mes con mayor acumulación."
-        />
-        <KpiCard
-          label="Instalaciones reportadas"
-          value={`${view.scope3Kpis.reportedInstallations}`}
-          helper="Cobertura del inventario Scope 3."
-        />
+        <KpiCard label="tCO2e Alcance 3" value={formatTons(view.scope3Kpis.totalEmissions)} helper="Inventario de cadena de valor." />
+        <KpiCard label="Unidad más emisora" value={view.scope3Kpis.topBusinessUnit} helper="Unidad de negocio con mayor peso." />
+        <KpiCard label="Instalación más emisora" value={view.scope3Kpis.topInstallation} helper="Principal contribución individual." />
+        <KpiCard label="Mes pico" value={view.scope3Kpis.peakMonth} helper="Mes con mayor acumulación." />
+        <KpiCard label="Instalaciones reportadas" value={`${view.scope3Kpis.reportedInstallations}`} helper="Cobertura del inventario Scope 3." />
       </section>
 
       <section className="grid gap-6 xl:grid-cols-2">
@@ -76,33 +56,31 @@ export function Scope3Page() {
           title="Lectura metodológica"
           description="El alcance 3 del inventario 2018 se concentra en la disposición final de residuos sólidos, por lo que la lectura más útil no es por categoría GHG amplia sino por unidad de negocio e instalación."
         >
-          <div className="space-y-4 text-sm leading-7 text-slate-300">
+          <div className="space-y-4 text-sm leading-7 text-[#5B6165]">
             <p>
               Esta vista prioriza una lectura ejecutiva: dónde se origina la carga, qué unidad de negocio la empuja y cómo se distribuye a lo largo del año turístico.
             </p>
             <div className="grid gap-3 sm:grid-cols-3">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Fuente base</p>
-                <p className="mt-2 text-sm text-slate-200">{view.scope3Kpis.annualSource}</p>
+              <div className="rounded-2xl border border-[#D7CCC1] bg-[#EBE6DB] p-4">
+                <p className="text-xs uppercase tracking-[0.18em] text-[#5B6165]">Fuente base</p>
+                <p className="mt-2 text-sm text-[#362F32]">{view.scope3Kpis.annualSource}</p>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Variación mensual</p>
-                <p className="mt-2 text-sm text-slate-200">{formatPercent(view.scope3Kpis.monthlyVariation)}</p>
+              <div className="rounded-2xl border border-[#D7CCC1] bg-[#EBE6DB] p-4">
+                <p className="text-xs uppercase tracking-[0.18em] text-[#5B6165]">Variación mensual</p>
+                <p className="mt-2 text-sm text-[#362F32]">{formatPercent(view.scope3Kpis.monthlyVariation)}</p>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Participación corporativa</p>
-                <p className="mt-2 text-sm text-slate-200">{formatPercent(view.scope3Kpis.totalShare)}</p>
+              <div className="rounded-2xl border border-[#D7CCC1] bg-[#EBE6DB] p-4">
+                <p className="text-xs uppercase tracking-[0.18em] text-[#5B6165]">Participación corporativa</p>
+                <p className="mt-2 text-sm text-[#362F32]">{formatPercent(view.scope3Kpis.totalShare)}</p>
               </div>
             </div>
           </div>
         </SectionCard>
       </section>
 
-      <section className="rounded-3xl border border-white/10 bg-slate-900/70 p-5 shadow-soft backdrop-blur">
-        <h3 className="text-base font-semibold text-white">Detalle por instalación</h3>
-        <p className="mt-1 text-sm text-slate-400">
-          Consolidado anual para revisar la contribución de cada instalación dentro del alcance 3.
-        </p>
+      <section className="rounded-[28px] border border-[#D7CCC1] bg-[#FFF9F1] p-5 shadow-soft backdrop-blur">
+        <h3 className="text-base font-semibold text-[#362F32]">Detalle por instalación</h3>
+        <p className="mt-1 text-sm text-[#5B6165]">Consolidado anual para revisar la contribución de cada instalación dentro del alcance 3.</p>
         <div className="mt-4">
           <EmissionsTable
             rows={view.scope3TableRows}
@@ -120,4 +98,3 @@ export function Scope3Page() {
     </div>
   );
 }
-

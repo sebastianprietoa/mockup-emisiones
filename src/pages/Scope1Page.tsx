@@ -25,27 +25,10 @@ export function Scope1Page() {
       <FilterBar fields={scopeFilters} values={filters} onChange={setFilterValue} title="Filtros de Alcance 1" />
 
       <section className="grid gap-4 md:grid-cols-4">
-        <KpiCard
-          label="tCO2e Alcance 1"
-          value={formatTons(view.scope1Kpis.totalEmissions)}
-          helper="Emisiones directas consolidadas."
-        />
-        <KpiCard
-          label="Combustible principal"
-          value={view.scope1Kpis.mainFuel}
-          helper="Fuente predominante del alcance."
-        />
-        <KpiCard
-          label="Instalación líder"
-          value={view.scope1Kpis.topInstallation}
-          helper="Mayor contribución operacional."
-        />
-        <KpiCard
-          label="Variación mensual"
-          value={formatSignedPercent(view.scope1Kpis.monthlyVariation)}
-          helper="Cambio respecto del periodo previo."
-          trend={view.scope1Kpis.monthlyVariation < 0 ? "baja" : "alza"}
-        />
+        <KpiCard label="tCO2e Alcance 1" value={formatTons(view.scope1Kpis.totalEmissions)} helper="Emisiones directas consolidadas." />
+        <KpiCard label="Combustible principal" value={view.scope1Kpis.mainFuel} helper="Fuente predominante del alcance." />
+        <KpiCard label="Instalación líder" value={view.scope1Kpis.topInstallation} helper="Mayor contribución operacional." />
+        <KpiCard label="Variación mensual" value={formatSignedPercent(view.scope1Kpis.monthlyVariation)} helper="Cambio respecto del periodo previo." trend={view.scope1Kpis.monthlyVariation < 0 ? "baja" : "alza"} />
       </section>
 
       <section className="grid gap-6 xl:grid-cols-2">
@@ -58,12 +41,9 @@ export function Scope1Page() {
         <ChartCard title="Tendencia mensual de Alcance 1" description="Comportamiento mensual del alcance.">
           <LineChart data={view.scope1MonthlyData} xKey="month" series={[{ key: "emissions", name: "tCO2e" }]} />
         </ChartCard>
-
-        <section className="rounded-3xl border border-white/10 bg-slate-900/70 p-5 shadow-soft backdrop-blur">
-          <h3 className="text-base font-semibold text-white">Detalle de fuentes directas</h3>
-          <p className="mt-1 text-sm text-slate-400">
-            Vista de datos simulados para la trazabilidad de combustibles y fugas.
-          </p>
+        <section className="rounded-[28px] border border-[#D7CCC1] bg-[#FFF9F1] p-5 shadow-soft backdrop-blur">
+          <h3 className="text-base font-semibold text-[#362F32]">Detalle de fuentes directas</h3>
+          <p className="mt-1 text-sm text-[#5B6165]">Vista de datos simulados para la trazabilidad de combustibles y fugas.</p>
           <div className="mt-4">
             <EmissionsTable
               rows={view.scope1TableRows}
@@ -82,4 +62,3 @@ export function Scope1Page() {
     </div>
   );
 }
-

@@ -10,7 +10,7 @@ export function DashboardLayout() {
 
   return (
     <DashboardFiltersProvider>
-      <div className="min-h-screen bg-dashboard-radial text-slate-100">
+      <div className="min-h-screen bg-dashboard-radial text-[#362F32]">
         <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
         <div className="md:pl-72">
           <Header onMenuClick={() => setSidebarOpen(true)} menuIcon={Menu} />

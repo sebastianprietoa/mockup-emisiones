@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { ChevronDown, Menu } from "lucide-react";
+import { Bell, LayoutGrid, List, Menu, Search } from "lucide-react";
 import { installationOptions, yearOptions } from "../../config/filters";
 import { projectTheme } from "../../config/theme";
 import { useDashboardFilters } from "../../context/DashboardFiltersContext";
@@ -14,12 +14,12 @@ export function Header({ onMenuClick, menuIcon: MenuIcon = Menu }: HeaderProps) 
   const { filters, setFilterValue } = useDashboardFilters();
 
   return (
-    <header className="sticky top-0 z-20 border-b border-white/10 bg-slate-950/70 backdrop-blur">
+    <header className="sticky top-0 z-20 border-b border-[#D7CCC1] bg-white/96 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <button
           type="button"
           onClick={onMenuClick}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-slate-100 transition hover:bg-white/10 md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-[#D7CCC1] bg-[#FFF9F1] text-[#362F32] transition hover:bg-[#EBE6DB] md:hidden"
           aria-label="Abrir navegación"
         >
           <MenuIcon size={18} />
@@ -27,64 +27,45 @@ export function Header({ onMenuClick, menuIcon: MenuIcon = Menu }: HeaderProps) 
 
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-3">
-            <BrandLogo className="h-12 w-[128px]" />
+            <BrandLogo className="h-12 w-[112px]" />
             <div className="min-w-0">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#39B54A]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#9EA900]">
                 {projectTheme.clientName}
               </p>
-              <h1 className="truncate text-lg font-semibold text-white sm:text-xl">
+              <h1 className="truncate text-[30px] font-semibold leading-none text-[#362F32]">
                 {projectTheme.projectName}
               </h1>
             </div>
           </div>
-          <p className="mt-1 text-sm text-slate-400">{projectTheme.subtitle}</p>
+          <p className="mt-1 text-sm text-[#5B6165]">{projectTheme.subtitle}</p>
+        </div>
+
+        <div className="hidden min-w-[220px] max-w-[360px] flex-1 items-center rounded-2xl border border-[#D7CCC1] bg-[#FFF9F1] px-4 py-2 text-[#5B6165] lg:flex">
+          <Search size={16} className="mr-2 shrink-0 text-[#B79FB1]" />
+          <span className="text-sm">Buscar indicador...</span>
         </div>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <label className="space-y-1 text-xs text-slate-400">
-            <span className="block">Año</span>
-            <div className="relative">
-              <select
-                value={filters.year ?? "all"}
-                onChange={(event) => setFilterValue("year", event.target.value)}
-                className="min-w-28 appearance-none rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 pr-10 text-sm text-slate-100 outline-none"
-              >
-                {yearOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown
-                className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
-                size={16}
-              />
-            </div>
-          </label>
-
-          <label className="space-y-1 text-xs text-slate-400">
-            <span className="block">Instalación</span>
-            <div className="relative">
-              <select
-                value={filters.installation ?? "all"}
-                onChange={(event) => setFilterValue("installation", event.target.value)}
-                className="min-w-56 appearance-none rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 pr-10 text-sm text-slate-100 outline-none"
-              >
-                {installationOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown
-                className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
-                size={16}
-              />
-            </div>
-          </label>
+          <div className="flex rounded-2xl border border-[#D7CCC1] bg-[#FFF9F1] p-1 text-sm">
+            <button className="rounded-xl bg-[#3A283A] px-4 py-2 font-semibold text-white">Todos</button>
+            <button className="rounded-xl px-4 py-2 text-[#5B6165]">Activos</button>
+          </div>
+          <div className="flex items-center gap-2 rounded-full border border-[#D7CCC1] bg-[#FFF9F1] px-2 py-1">
+            <button className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[#3A283A] text-white" aria-label="Vista cuadrícula">
+              <LayoutGrid size={16} />
+            </button>
+            <button className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#5B6165]" aria-label="Vista lista">
+              <List size={16} />
+            </button>
+          </div>
+          <button className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#D7CCC1] bg-[#FFF9F1] text-[#5B6165]">
+            <Bell size={16} />
+          </button>
+          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#EC1B91] text-sm font-semibold text-white">
+            JP
+          </div>
         </div>
       </div>
     </header>
   );
 }
-

@@ -1,4 +1,4 @@
-import logoUrl from "../../assets/brand/gt-logo.png";
+import logoUrl from "../../../assets/Brand/LOGO_APLICACIONES/PNGS/LOGO_APLICACIONES_Mesa de trabajo 1 copia 4.png";
 
 type BrandLogoProps = {
   className?: string;
@@ -8,8 +8,8 @@ export function BrandLogo({ className = "h-12 w-auto" }: BrandLogoProps) {
   return (
     <img
       src={logoUrl}
-      alt="Green Ticket"
-      className={`${className} rounded-2xl border border-white/10 bg-white/5 object-contain shadow-soft`}
+      alt="Territorio Vivo"
+      className={`${className} rounded-[18px] border border-[#D7CCC1] bg-[#EBE6DB] object-contain p-1 shadow-soft`}
     />
   );
 }

@@ -7,11 +7,11 @@ type ChartCardProps = {
 
 export function ChartCard({ title, description, children, footer }: ChartCardProps) {
   return (
-    <section className="rounded-3xl border border-white/10 bg-slate-900/70 p-5 shadow-soft backdrop-blur">
+    <section className="rounded-[28px] border border-[#D7CCC1] bg-[#FFF9F1] p-5 shadow-soft backdrop-blur">
       <div className="mb-4 flex items-start justify-between gap-4">
         <div>
-          <h3 className="text-base font-semibold text-white">{title}</h3>
-          {description ? <p className="mt-1 text-sm text-slate-400">{description}</p> : null}
+          <h3 className="text-base font-semibold text-[#362F32]">{title}</h3>
+          {description ? <p className="mt-1 text-sm text-[#5B6165]">{description}</p> : null}
         </div>
       </div>
       <div className="h-[320px]">{children}</div>
@@ -19,4 +19,3 @@ export function ChartCard({ title, description, children, footer }: ChartCardPro
     </section>
   );
 }
-
