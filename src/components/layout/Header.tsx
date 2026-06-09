@@ -27,7 +27,7 @@ export function Header({ onMenuClick, menuIcon: MenuIcon = Menu }: HeaderProps) 
 
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-3">
-            <BrandLogo className="h-12 w-[112px]" />
+            <BrandLogo className="w-[124px] sm:w-[148px]" />
             <div className="min-w-0">
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#9EA900]">
                 {projectTheme.clientName}

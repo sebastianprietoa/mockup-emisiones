@@ -4,12 +4,10 @@ type BrandLogoProps = {
   className?: string;
 };
 
-export function BrandLogo({ className = "h-12 w-auto" }: BrandLogoProps) {
+export function BrandLogo({ className = "w-[144px]" }: BrandLogoProps) {
   return (
-    <img
-      src={logoUrl}
-      alt="Territorio Vivo"
-      className={`${className} rounded-[18px] border border-[#D7CCC1] bg-[#EBE6DB] object-contain p-1 shadow-soft`}
-    />
+    <div className={`${className} overflow-hidden rounded-[22px] border border-[#5D4A73] bg-[#3A283A] shadow-soft`}>
+      <img src={logoUrl} alt="Territorio Vivo" className="block h-auto w-full object-contain" />
+    </div>
   );
 }

@@ -23,7 +23,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
       >
         <div className="mb-6 flex items-start justify-between gap-3 border-b border-[#4A315A] pb-5">
           <div className="min-w-0 space-y-3">
-            <BrandLogo className="h-14 w-[156px]" />
+            <BrandLogo className="w-[184px]" />
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#9EA900]">
                 {projectTheme.clientName}
